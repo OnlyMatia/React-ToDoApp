@@ -1,40 +1,38 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import Heading from "./Heading";
+import Todo from "./Todo";
 
-export default App = () => {
-
-  const [toDo, addToDo] = useState([])
-  const [inputValue, setInputValue] = useState("")
+const App = () => {
+  const [toDo, addToDo] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event) => {
-    setInputValue(event.target.value)
-  }
+    setInputValue(event.target.value);
+  };
 
   const handleClick = () => {
-    inputValue.trim() && addToDo([...toDo,inputValue])
-    setInputValue("")
-  }
+    inputValue.trim() && addToDo([...toDo, inputValue]);
+    setInputValue("");
+  };
 
-  
   return (
     <div className="container">
-      <div className="heading">
-        <h1>To-Do List</h1>
-      </div>
+      <Heading />
       <div className="form">
-        <input maxLength="20" type="text" value={inputValue} onChange={handleChange}/>
+        <input maxLength="20" type="text" value={inputValue} onChange={handleChange} />
         <button onClick={handleClick}>
           <span>Add</span>
         </button>
       </div>
       <div>
         <ul>
-          {toDo.map((el,i) => {
-            return <li key={i}>{el}</li>
+          {toDo.map((el, i) => {
+            return <Todo key={i} text={el} />;
           })}
         </ul>
       </div>
     </div>
   );
-}
+};
 
-
+export default App;
