@@ -1,5 +1,5 @@
 body {
-  background-color: #6e94fd;
+  background-color: #517cf3;
   min-height: 70vh;
   padding: 1rem;
   box-sizing: border-box;
@@ -76,4 +76,6 @@ li {
   text-align: left;
   position: relative;
   padding: 0.5rem;
+  cursor: pointer;
+  user-select: none;
 }

@@ -6,8 +6,16 @@ const App = () => {
   const [toDo, addToDo] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
+  localStorage.getItem
+
   const handleChange = (event) => {
     setInputValue(event.target.value);
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleClick();
+    }
   };
 
   const handleClick = () => {
@@ -15,11 +23,20 @@ const App = () => {
     setInputValue("");
   };
 
+  const deleteToDo = (id) => {
+    addToDo(el => {
+      return el.filter((item, index)=>{
+        return index !== id
+      })
+    })
+  }
+
+
   return (
     <div className="container">
       <Heading />
       <div className="form">
-        <input maxLength="20" type="text" value={inputValue} onChange={handleChange} />
+        <input maxLength="20" type="text" value={inputValue} onChange={handleChange} onKeyDown={handleKeyPress} />
         <button onClick={handleClick}>
           <span>Add</span>
         </button>
@@ -27,7 +44,7 @@ const App = () => {
       <div>
         <ul>
           {toDo.map((el, i) => {
-            return <Todo key={i} text={el} />;
+            return <Todo key={i} id={i} text={el} delete={deleteToDo} />;
           })}
         </ul>
       </div>
